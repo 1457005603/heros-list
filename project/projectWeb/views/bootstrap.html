@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>英雄列表</title>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="js/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- <h1 class="text-center">英雄列表</h1>
+        <button type="button" class="btn btn-primary">添加英雄</button> -->
+        <div class="">
+            <table class="table">
+                <caption class="h1 text-center text-success">英雄列表</caption>
+                <thead>
+                    <tr>
+                        <td style="border-top:none;"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" id="goudan">添加英雄</button></td>
+                    </tr>
+                    <tr class="success">
+                        <td class="h4">编号</td>
+                        <td class="h4">英雄名称</td>
+                        <td class="h4">性别</td>
+                        <td class="h4">创建时间</td>
+                        <td class="h4">操作</td>
+                    </tr>
+                </thead>
+                <tbody>
+
+
+
+
+                </tbody>
+            </table>
+        </div>
+        <!-- 模态框 -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">添加新英雄</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="recipient-name" class="control-label">姓名</label>
+                                <input type="text" class="form-control" id="recipient-name name" name='name'>
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="control-label">性别</label>
+                                <input type="text" class="form-control" id="recipient-name gender" name='gender'>
+                                <!-- <textarea class="form-control" id="message-text"></textarea> -->
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary" id='addhroes'>添加</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <script src="https://cdn.bootcss.com/axios/0.19.0-beta.1/axios.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script> -->
+    <script src='js/jquery.min.js'></script>
+    <script src='js/bootstrap.min.js'></script>
+    <script src="js/chaxun.js"></script>
+    <script src="js/template-native.js"></script>
+    <!-- <script>
+        $(function() {
+            $('#exampleModal').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget) // Button that triggered the modal
+                var recipient = button.data('whatever') // Extract info from data-* attributes
+                    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+                    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+                    // var modal = $(this)
+                    // modal.find('.modal-title').text('添加新英雄')
+                    // modal.find('.modal-body input').val(recipient)
+            })
+
+        })
+        $('body').click(function() {
+            console.log(1);
+
+            $('#myModal').modal('show')
+        })
+    </script> -->
+    <script id="chaxun" type='text/template'>
+        <%for(var i = 0;i<data.length;i++){%>
+            <tr class=<%=data[i].isdel ? 'btn-danger': 'btn-info'%>>
+                <td>
+                    <%=data[i].id%>
+                </td>
+                <td>
+                    <%=data[i].name%>
+                </td>
+                <td>
+                    <%=data[i].gender%>
+                </td>
+                <td>
+                    <%=data[i].ctime%>
+                </td>
+                <td>
+                    <a href="javascript:;" id="updata" data-toggle="modal" data-target="#exampleModal" data-id=<%=data[i].id%> >
+                        <%=data[i].isdel ? '不可编辑': '编辑'%>
+                    </a>
+                    <a class=<%=data[i].isdel ? 'text-danger': ''%> href=" javascript:; " id='del' data-id=<%=data[i].id%> ><%=data[i].isdel ? '已删除': '删除'%></a>
+
+                </td>
+            </tr>
+            <%}%>
+    </script>
+</body>
